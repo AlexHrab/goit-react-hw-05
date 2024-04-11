@@ -1,0 +1,40 @@
+.box{
+    
+padding: 0;
+top: 0;
+}
+
+.nav{
+    display: flex;
+    width: 100%;
+    padding: 0;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.link{
+    margin: 0;
+    padding: 25px;
+    box-sizing: border-box;
+    display: inline-flex;
+    background-color: rgb(163 163 163);
+    border-radius: 8px;
+    color: white;
+    height: 40px;
+    width: calc((100% - 10px) / 2);
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    letter-spacing: 15px;
+    font-weight: 900;
+    text-transform:lowercase;
+}
+
+.link:hover{
+    background-color: rgb(115 115 115);
+}
+
+.active{
+    background-color: rgb(97, 97, 97);
+}
