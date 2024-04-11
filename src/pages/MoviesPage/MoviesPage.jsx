@@ -6,7 +6,7 @@ import css from './MoviePage.module.css'
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage"
 
 function MoviesPage(){
-const[searchParams, setSearchParams] = useSearchParams('')
+const[searchParams, setSearchParams] = useSearchParams()
 const[searchFilms, setSearchFilms] = useState([])
 const name = searchParams.get("query");
 const location = useLocation()
@@ -14,13 +14,14 @@ const[eror, setError] = useState(false)
 
 
 useEffect(() => {async function getFilm(){
+    if(name !==null){
     try{
         const result = await searchMovie(name);
         
-setSearchFilms(result)
-
+setSearchFilms(result.results)
+if(result.total_results===0) {alert('Sorry, no movie found...')}
     }catch (error){setError(true)}
-} getFilm()}, [searchParams])
+}} getFilm()}, [searchParams, name])
 
 function Submit(evt){
     evt.preventDefault();
@@ -30,11 +31,8 @@ function Submit(evt){
 			alert("Please enter search term!")
 			return;
 		}
-        if(searchFilms.length === 0) {alert('Sorry, no movie found...')
-        form.reset();
-        return;}
-         
         setSearchParams({query: value})
+        
     form.reset();
 };
 
@@ -53,14 +51,14 @@ function Submit(evt){
   </form>
 
   <ul className={css.list}>
+  
     {searchFilms.map(el => 
-    
     <li key={el.id} className={css.item}>
-    
         <Link to={`${/movies/}${el.id}`} state={location}>
         <p className={css.text}>{el.title}</p>
         </Link>
         </li>)}
+
     </ul>
 
     {eror && <ErrorMessage/>}

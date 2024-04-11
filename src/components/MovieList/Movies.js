@@ -42,6 +42,6 @@ export async function searchMovie(searchName){
         }
     }
     const result = await axios.get(`${POINT_FOR_SEARCH}`, options)
-    return result.data.results
+    return result.data
 }
  
