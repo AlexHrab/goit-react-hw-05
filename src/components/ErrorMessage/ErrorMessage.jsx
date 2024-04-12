@@ -2,7 +2,7 @@
  
  function ErrorMessage(){
     return(
-        <p className={css.eror}>Whoops, something went wrong! Please try reloading this page!</p>
+        alert('Whoops, something went wrong! Please try reloading this page!')
     )
 }
 

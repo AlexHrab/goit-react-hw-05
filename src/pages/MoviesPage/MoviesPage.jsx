@@ -1,15 +1,16 @@
 import { useSearchParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { searchMovie } from "../../components/MovieList/Movies"
+import { searchMovie } from "../../components/API"
 import { Link, useLocation } from "react-router-dom"
 import css from './MoviePage.module.css'
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage"
+import { MovieList } from "../../components/MovieList/MovieList"
 
 function MoviesPage(){
 const[searchParams, setSearchParams] = useSearchParams()
 const[searchFilms, setSearchFilms] = useState([])
 const name = searchParams.get("query");
-const location = useLocation()
+
 const[eror, setError] = useState(false)
 
 
@@ -50,20 +51,10 @@ function Submit(evt){
     <button className={css.btn} type="submit">Search</button>
   </form>
 
-  <ul className={css.list}>
-  
-    {searchFilms.map(el => 
-    <li key={el.id} className={css.item}>
-        <Link to={`${/movies/}${el.id}`} state={location}>
-        <p className={css.text}>{el.title}</p>
-        </Link>
-        </li>)}
-
-    </ul>
+  <MovieList films={searchFilms}/>
 
     {eror && <ErrorMessage/>}
         </div>
-
     )
 }
 

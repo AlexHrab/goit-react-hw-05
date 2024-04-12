@@ -121,3 +121,7 @@
 .information:hover{
     background-color: rgb(115 115 115);
 }
+
+.box{
+    height: 100vh;
+}
